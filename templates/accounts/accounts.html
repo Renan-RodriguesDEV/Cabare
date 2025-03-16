@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+<title>{% block title %}{{user}}{% endblock%}</title>
+{% block content %}
+<div class="min-h-screen bg-gray-100 py-12">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <!-- Account Header -->
+      <div class="bg-blue-600 px-6 py-4">
+        <h1 class="text-white font-bold text-2xl">My Account</h1>
+      </div>
+
+      <!-- Account Information -->
+      <div class="p-6">
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            Personal Information
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <p class="text-sm text-gray-600">Username</p>
+              <p class="text-lg font-medium text-gray-800">{{ user.username }}</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-600">Email Address</p>
+              <p class="text-lg font-medium text-gray-800">{{ user.email }}</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-600">Full Name</p>
+              <p class="text-lg font-medium text-gray-800">
+                {{ user.username}}
+              </p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-600">Member Since</p>
+              <p class="text-lg font-medium text-gray-800">
+                {{ user.date_joined|date:"F j, Y" }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Account Actions -->
+        <div class="border-t border-gray-200 pt-6">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            Settings
+          </h2>
+          <div
+            class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4"
+          >
+            <a
+              href="/"
+              class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Home
+            </a>
+            <a
+              href="{% url "contact" %}"
+              class="inline-flex items-center justify-center px-4 py-2 bg-gray-600 text-white font-medium rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+            >
+             Contact
+            </a>
+          </div>
+        </div>
+
+        <!-- Recent Activity (Optional) -->
+        <div class="border-t border-gray-200 mt-8 pt-6">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            Recent Activity
+          </h2>
+          {% if activities %}
+          <ul class="divide-y divide-gray-200">
+            {% for activity in activities %}
+            <li class="py-3">
+              <p class="text-gray-800">{{ activity.description }}</p>
+              <p class="text-sm text-gray-500">
+                {{ activity.timestamp|date:"F j, Y, g:i a" }}
+              </p>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p class="text-gray-600">No recent activity.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

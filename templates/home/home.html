@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+<title>{% block title %}Cabaré{% endblock %}</title>
+{% block content %}
+<div class="flex">
+  <!-- Sidebar -->
+  <div class="w-64 bg-blue-800 text-white p-4 min-h-screen">
+    <h2 class="text-xl font-bold mb-6 border-b pb-2">Menu</h2>
+    <ul class="space-y-4">
+      <li><a href="#" class="block hover:bg-blue-700 p-2 rounded">Ver Fotos</a></li>
+      <li><a href="#" class="block hover:bg-blue-700 p-2 rounded">Lives</a></li>
+      <li><a href="{% url "contact" %}" class="block hover:bg-blue-700 p-2 rounded">Contato</a></li>
+      <li><a href="#" class="block hover:bg-blue-700 p-2 rounded">Encontros</a></li>
+    </ul>
+  </div>
+  
+  <!-- Main content -->
+  <div class="flex-1 p-8">
+    <!-- Image Slider -->
+    <div class="mb-8 relative overflow-hidden rounded-lg shadow-lg" id="imageSlider">
+      <div class="flex transition-transform duration-500 ease-in-out">
+        <div class="min-w-full">
+          <img src="https://via.placeholder.com/800x400?text=Imagem+1" alt="Slide 1" class="w-full h-64 object-cover">
+        </div>
+        <div class="min-w-full">
+          <img src="https://via.placeholder.com/800x400?text=Imagem+2" alt="Slide 2" class="w-full h-64 object-cover">
+        </div>
+        <div class="min-w-full">
+          <img src="https://via.placeholder.com/800x400?text=Imagem+3" alt="Slide 3" class="w-full h-64 object-cover">
+        </div>
+      </div>
+      <!-- Slider controls -->
+      <button class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 text-white" onclick="moveSlide(-1)">❮</button>
+      <button class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 text-white" onclick="moveSlide(1)">❯</button>
+    </div>
+
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center mx-auto">
+      <h1 class="text-3xl font-bold text-blue-600 mb-4">Bem-vindo ao Cabaré do Renan!</h1>
+      <p class="text-gray-600 mb-6">
+        Aqui temos lives pix, only packs, e etc. {{ user }}
+      </p>
+      <div class="space-y-4">
+        <p class="text-gray-700">
+          Fique a vontade e explore nosso vasto conteudo.
+        </p>
+        <a
+          href="#"
+          class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
+        >
+          Galeria Gratuita!!
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelector('#imageSlider > div');
+  const totalSlides = document.querySelectorAll('#imageSlider > div > div').length;
+  
+  function moveSlide(direction) {
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }
+  
+  // Auto slide every 5 seconds
+  setInterval(() => moveSlide(1), 5000);
+</script>
+{% endblock %}
