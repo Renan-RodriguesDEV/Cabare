@@ -6,10 +6,10 @@
   <div class="w-64 bg-blue-800 text-white p-4 min-h-screen">
     <h2 class="text-xl font-bold mb-6 border-b pb-2">Menu</h2>
     <ul class="space-y-4">
-      <li><a href="#" class="block hover:bg-blue-700 p-2 rounded">Ver Fotos</a></li>
-      <li><a href="#" class="block hover:bg-blue-700 p-2 rounded">Lives</a></li>
+      <li><a href="{% url "galery" %}" class="block hover:bg-blue-700 p-2 rounded">Ver Fotos</a></li>
+      <li><a href="{% url "videos" %}" class="block hover:bg-blue-700 p-2 rounded">Videos</a></li>
       <li><a href="{% url "contact" %}" class="block hover:bg-blue-700 p-2 rounded">Contato</a></li>
-      <li><a href="#" class="block hover:bg-blue-700 p-2 rounded">Encontros</a></li>
+      <li><a href="{% url "meetings" %}" class="block hover:bg-blue-700 p-2 rounded">Encontros</a></li>
     </ul>
   </div>
   
@@ -43,7 +43,7 @@
           Fique a vontade e explore nosso vasto conteudo.
         </p>
         <a
-          href="#"
+          href="{% url "galery" %}"
           class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
         >
           Galeria Gratuita!!

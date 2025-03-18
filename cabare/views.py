@@ -2,10 +2,9 @@ from django.http import HttpRequest
 from django.shortcuts import redirect, render
 
 from middlewares.auth import check_passwd
-from .models import Usuarios
+from .models import Images, Post, Usuarios, Videos
 
 
-# Create your views here.
 def index(request: HttpRequest):
     return render(request, "home/home.html", {"user": "Renan"})
 
@@ -14,16 +13,30 @@ def contact(request: HttpRequest):
     return render(request, "contact/contact.html", {"user": "Renan"})
 
 
-def about(request: HttpRequest):
+def accounts(request: HttpRequest):
     user = Usuarios.objects.first()
     return render(request, "accounts/accounts.html", {"user": user})
+
+
+def galery(request: HttpRequest):
+    images = Images.objects.all()
+    return render(request, "galery/galery.html", {"images": images})
+
+
+def videos(request: HttpRequest):
+    videos = Videos.objects.all()
+    return render(request, "videos/videos.html", {"videos": videos})
+
+
+def meetings(request: HttpRequest):
+    meetings = Post.objects.first()
+    return render(request, "meetings/meetings.html", {"meetings": meetings})
 
 
 def login(request: HttpRequest):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-        print(password, username)
         try:
             user = Usuarios.objects.get(username=username)
             if user:

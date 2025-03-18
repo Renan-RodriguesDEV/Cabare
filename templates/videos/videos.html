@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold text-center mb-8">Galeria de Videos</h1>
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {% for video in videos %}
+            <div class="bg-white rounded shadow overflow-hidden">
+                <img src="{{ video.url }}" alt="{{ video.alt|default:'Video' }}" class="w-full h-48 object-cover">
+            </div>
+        {% empty %}
+            <div class="col-span-full text-center text-gray-500">
+                Nenhum video disponível.
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
