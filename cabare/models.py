@@ -14,7 +14,7 @@ class Usuarios(models.Model):
     email = models.EmailField(max_length=100, unique=True)
     phone = models.CharField(max_length=20)
     date_joined = models.DateField(auto_now_add=True)
-
+    image = models.ForeignKey('Images',on_delete=models.SET_NULL,null=True,blank=True)
     typed = models.CharField(max_length=50, choices=TIPO_CHOICES, default="C")
 
     def save(self, *args, **kwargs):

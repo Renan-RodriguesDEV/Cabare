@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<ul class="space-y-4">
+    {% for profile in profiles %}
+        <li class="flex items-center justify-between bg-white p-4 rounded shadow">
+            <div class="flex items-center">
+                <img src="{{ profile.photo.url }}" alt="{{ profile.nome }}" class="w-16 h-16 rounded-full mr-4">
+                <span class="font-semibold text-lg">{{ profile.nome }}</span>
+            </div>
+            <div class="flex space-x-2">
+                <a href="{% url 'profile_detail' profile.id %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Ver Perfil</a>
+                <a href="{% url 'contact' profile.id %}" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Entrar em Contato</a>
+            </div>
+        </li>
+    {% empty %}
+        <li class="text-center text-gray-500">Nenhum perfil disponível.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

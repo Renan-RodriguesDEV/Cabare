@@ -33,6 +33,11 @@ def meetings(request: HttpRequest):
     return render(request, "meetings/meetings.html", {"meetings": meetings})
 
 
+def profiles(request: HttpRequest):
+    profiles = Usuarios.objects.all()
+    return render(request, "profiles/profiles.html", {"profiles": profiles})
+
+
 def login(request: HttpRequest):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -41,7 +46,6 @@ def login(request: HttpRequest):
             user = Usuarios.objects.get(username=username)
             if user:
                 if check_passwd(password, user.password):
-                    # User found, you could set a session variable to keep the user logged in
                     print("Passou")
                     request.session["user_id"] = user.id
                     request.session["username"] = user.username
